@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     machine:
-      image: ubuntu-2004:202104-01  # any available image
+      image: ubuntu-1604:201903-01  # any available image
       docker_layer_caching: true
-      resource_class: large
+      # resource_class: large
     docker:
       - image: circleci/python:3.6
     steps:
