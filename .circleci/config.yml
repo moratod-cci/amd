@@ -3,8 +3,7 @@ jobs:
   build:
     # AMD: this enables DLC (fails build)
     machine:
-      # image: ubuntu-1604:201903-01  # any available image
-      image: circleci/python:3.6  # any available image
+      image: ubuntu-1604:201903-01  # any available image
       docker_layer_caching: true
     # AMD: this enables Large resource
     # resource_class: large
