@@ -1,10 +1,12 @@
 version: 2
 jobs:
   build:
-    resource_class: large
-    docker_layer_caching: true
-    docker:
-      - image: circleci/python:3.6
+    # resource_class: large
+    machine:
+      image: ubuntu-2004:202104-01  # any available image
+      docker_layer_caching: true
+    # docker:
+      # - image: circleci/python:3.6
     steps:
       - checkout
       - restore_cache:
