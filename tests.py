@@ -1,5 +1,8 @@
-from hello import app
+from hello import app 
+import time
 with app.test_client() as c:
     response = c.get('/')
     assert response.data == b'Hello World!'
     assert response.status_code == 200
+    time.sleep(60)
+    print("1")
