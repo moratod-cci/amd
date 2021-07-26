@@ -23,5 +23,5 @@ jobs:
             python3 tests.py
       - store_artifacts:
           path: test-reports/
-          destination: python_app
+          destination: amd
 
