@@ -6,3 +6,4 @@ with app.test_client() as c:
     assert response.status_code == 200
     print("1")
     time.sleep(60)
+    print("2")
