@@ -5,3 +5,4 @@ with app.test_client() as c:
     assert response.data == b'Hello World!'
     assert response.status_code == 200
     print("1")
+    time.sleep(60)
