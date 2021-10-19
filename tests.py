@@ -7,5 +7,4 @@ with app.test_client() as c:
     print("1")
     time.sleep(60)
     print("2")
-    print("3")
     print("4")
