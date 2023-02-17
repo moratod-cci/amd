@@ -8,4 +8,5 @@ with app.test_client() as c:
     time.sleep(60)
     print("2")
     print("3")
+    print("4")
 
