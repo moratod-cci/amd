@@ -2,14 +2,14 @@ version: 2
 jobs:
   build:
     # AMD: this enables DLC (fails build)
-    machine:
-      image: ubuntu-1604:201903-01  # any available image
-      docker_layer_caching: true
+    #machine:
+      #image: ubuntu-1604:201903-01  # any available image
+      #docker_layer_caching: true
     # AMD: this enables Large resource
-    # parallelism: 13
-    # resource_class: medium
-    # docker:
-      # - image: circleci/python:3.6
+    parallelism: 13
+    resource_class: medium
+    docker:
+      - image: circleci/python:3.6
     steps:
       - checkout
       - restore_cache:
