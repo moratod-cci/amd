@@ -1,10 +1,6 @@
 version: 2
 jobs:
   build:
-    # AMD: this enables DLC (fails build)
-    machine:
-      image: ubuntu-1604:201903-01  # any available image
-      docker_layer_caching: true
     # AMD: this enables Large resource
     parallelism: 13
     resource_class: medium
@@ -12,6 +8,8 @@ jobs:
       - image: circleci/python:3.6
     steps:
       - checkout
+      - setup_remote_docker:
+        docker_layer_caching: true
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
