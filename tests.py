@@ -6,5 +6,5 @@ with app.test_client() as c:
     assert response.status_code == 200
     print("1")
     print("2")
-    print("4")
+    print("3,4,5")
 
