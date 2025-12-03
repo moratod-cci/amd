@@ -1,38 +1,33 @@
-# -*- js -*-
-{
-  "version": "2.1",
-
-  "jobs": {
-    "build": {
-      "docker": [{"image": "debian:stable"}],
-      "steps": [
-        "checkout",
-        {"run": "apt-get update -qq"},
-        {"run": "apt-get install -qq cloc make build-essential git luajit lua5.1 lua5.2 lua5.3 lua5.4"},
-        {"run": "make ci"},
-        {"run": "git diff --quiet"},
-      ]
-    },
-    "windows": {
-      "executor": "windows/default",
-      "steps": [
-        "checkout",
-        {"run": "choco install -y lua53"},
-        {"run": "choco install -y make"},
-        {"run": "make test LUA=lua53"}
-      ]
-    }
-  },
-
-  "workflows": {
-    "version": 2,
-    "all": {
-      "jobs": ["build", "windows"]
-    }
-  },
-
-  "orbs": {
-    "windows": "circleci/windows@2.2.0"
-  }
-}
+version: 2
+jobs:
+  build:
+    # AMD: this enables DLC (fails build)
+    machine:
+      image: ubuntu-1604:201903-01  # any available image
+      docker_layer_caching: true
+    # AMD: this enables Large resource
+    # resource_class: large
+    # docker:
+      # - image: circleci/python:3.6
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
+      - run:
+          name: Running tests
+          command: |
+            . venv/bin/activate
+            python3 tests.py
+      - store_artifacts:
+          path: test-reports/
+          destination: amd
 
