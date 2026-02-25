@@ -6,3 +6,5 @@ This Python application repo was created to showcase the integration between Git
 Testing trial
 
 Testing usage!!
+
+Not OSS
